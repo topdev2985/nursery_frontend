@@ -222,7 +222,7 @@ export default function AvartarCrop() {
                                 ref={imgRef}
                                 alt="Crop me"
                                 src={imgSrc}
-                                style={{ transform: `scale(${scale})` }}
+                                style={{ transform: `scale(${scale})`, visibility:open?'visible':'hidden' }}
                                 onLoad={onImageLoad}
                             />
                         </ReactCrop>

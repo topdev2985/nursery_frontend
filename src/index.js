@@ -35,10 +35,8 @@ root.render(
       <AnimatePresence exitBeforeEnter>
         <Provider store={store}>
           <Routes>
-
             <Route path='/login' element={<Login />}/>
             <Route path='/register' element={<Register />}/>
-
             <Route path='/' element={<App />}>
               {/* <Route index element={<Counter />} /> */}
               <Route path='/test' element={<Test />} />

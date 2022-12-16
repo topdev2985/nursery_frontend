@@ -3,7 +3,12 @@ import React, { useState } from "react";
 import { Link , useNavigate} from "react-router-dom";
 
 import styled from "styled-components";
+
+import axios from "axios";
+
 import { Input, InputWrapper, Label, Fieldset } from "../../components/FormControls/FormControlStyles";
+
+
 import { login } from "../../actions/logApi";
 // import { setAuth } from "../../reducers/authReducer";
 const Container=styled.form`
@@ -24,6 +29,19 @@ font-weight: bold;
 cursor:pointer;
 &:hover{
     background-color:hsl(252deg 100% 73%);
+}
+`;
+const StyledButton1 = styled.button`
+font-size: 20px;
+color: white;
+background-color:#2dbfffba;
+border: 0;
+border-radius: 4px;
+line-height: 2.55;
+font-weight: bold;
+cursor:pointer;
+&:hover{
+    background-color: #2dbfff;
 }
 `;
 export default function Login() {
@@ -70,6 +88,13 @@ export default function Login() {
                     <StyledButton type="submit">Login</StyledButton>
                 </InputWrapper>
                 <Link to="/register">to register</Link>
+                <StyledButton1
+                   
+                    onClick={e=>{
+                        e.preventDefault();
+                        axios.get('/authUri');
+                    }}
+                >Connect to QuickBooks</StyledButton1>
             </Fieldset>
         </Container>
     )

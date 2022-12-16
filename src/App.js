@@ -11,7 +11,6 @@ import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import WidgetsIcon from "@mui/icons-material/Widgets";
 import { IconButton } from "@mui/material";
 
-import axios from "axios";
 import serverurl from "./actions/serverurl";
 
 import { useNavigate } from "react-router-dom";
@@ -260,7 +259,6 @@ function App() {
       })
       .then(res=>res.json())
       .then(data=>{
-        console.log('--------',data);
         if(data.isLoggedIn){
           navigate('/attendance')
         }
