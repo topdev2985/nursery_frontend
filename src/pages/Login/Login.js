@@ -92,7 +92,11 @@ export default function Login() {
                    
                     onClick={e=>{
                         e.preventDefault();
-                        axios.get('/authUri');
+                        axios.get('/authUri').then(res=>{
+                            window.open(res.data);
+                        }).catch(e=>{
+                            alert('QuickBooks connection error');
+                        });
                     }}
                 >Connect to QuickBooks</StyledButton1>
             </Fieldset>

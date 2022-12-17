@@ -10,6 +10,8 @@ import { MobileDatePicker } from '@mui/x-date-pickers/MobileDatePicker';
 import { TextField } from "@mui/material";
 import Switch from "@mui/material/Switch";
 
+import axios from "axios";
+
 import { Input, InputsGroup, InputWrapper, Label, Fieldset, Select } from "../../../components/FormControls/FormControlStyles";
 import { selectChildModal, newChildModalToggle } from "../../../reducers/uiSlice";
 import { StyledButton } from "../../../components/Button/ButtonStyles";
@@ -88,6 +90,22 @@ const PurpleSwitch = styled(Switch)`
 `
 
 function AddChild() {
+    /**
+     * customer pull
+     */
+    const [customers, setCustomers]=useState([]);
+    useEffect(()=>{
+        axios.get('/customerspullapi').then(res=>{
+            if(res.data && res.data.length!==0){
+                setCustomers(res.data)
+            }
+        })
+        .catch(e=>{
+            alert('QuickBooks connection error');
+        })
+
+    },[setCustomers]);
+
     const open = useSelector(selectChildModal);
     const dispatch = useDispatch();
     const editChilId = useSelector(selectChildId);
@@ -158,11 +176,14 @@ function AddChild() {
                                 dispatch(setChild({ parentName: e.target.value }));
                             }}
                             value={child.parentName}
+                            required
                         >
                             <option value=""></option>
-                            <option value="123123">maksim</option>
-                            <option value="343423">borison</option>
-                            <option value="1231231">natasa</option>
+                            {customers.length!==0 && (
+                                customers.map((customer, key)=>(
+                                    <option value={customer.name} key={customer.name}>{customer.name}</option>
+                                ))
+                            )}
                         </Select>
                         
                     </InputWrapper>

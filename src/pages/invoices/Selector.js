@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+import axios from "axios";
 
 import dayjs from 'dayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
@@ -26,6 +27,22 @@ cursor:pointer;
 `;
 
 export default function Selector() {
+    /**
+     * customers pull
+     */
+    const [customers, setCustomers] = useState([]);
+    useEffect(() => {
+        axios.get('/customerspullapi').then(res => {
+            if (res.data && res.data.length !== 0) {
+                setCustomers(res.data)
+            }
+        })
+            .catch(e => {
+                alert('QuickBooks connection error');
+            })
+
+    }, [setCustomers]);
+
     const [startDate, setStartDate] = useState(dayjs(new Date()));
     const [endDate, setEndDate] = useState(dayjs(new Date()));
     const [parentName, setParentName] = useState('');
@@ -42,14 +59,17 @@ export default function Selector() {
                 <Label>Parent name:</Label>
                 <Select
                     value={parentName}
-                    onChange={e=>{
+                    onChange={e => {
                         setParentName(e.target.value);
                     }}
+                    required
                 >
                     <option value=""></option>
-                    <option value="123123">maksim</option>
-                    <option value="343423">borison</option>
-                    <option value="1231231">natasa</option>
+                    {customers.length !== 0 && (
+                        customers.map((customer, key) => (
+                            <option value={customer.name} key={customer.name}>{customer.name}</option>
+                        ))
+                    )}
                 </Select>
             </InputWrapper>
             <InputWrapper>
