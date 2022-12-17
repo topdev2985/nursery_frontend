@@ -97,7 +97,8 @@ function AddChild() {
     useEffect(()=>{
         axios.get('/customerspullapi').then(res=>{
             if(res.data && res.data.length!==0){
-                setCustomers(res.data)
+                setCustomers(res.data);
+                console.log(res.data);
             }
         })
         .catch(e=>{
