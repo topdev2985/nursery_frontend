@@ -181,7 +181,7 @@ function AddChild() {
                             <option value=""></option>
                             {customers.length!==0 && (
                                 customers.map((customer, key)=>(
-                                    <option value={customer.FullyQualifiedName} key={customer.FullyQualifiedName}>{customer.FullyQualifiedName}</option>
+                                    <option value={customer.DisplayName} key={customer.DisplayName}>{customer.DisplayName}</option>
                                 ))
                             )}
                         </Select>
