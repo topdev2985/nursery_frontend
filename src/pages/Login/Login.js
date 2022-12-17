@@ -65,6 +65,16 @@ export default function Login() {
             
         })
     }
+
+    const handleQuickBookConnection=()=>{
+        axios.get('/authUri').then(res=>{
+            console.log('-----------',res)
+            window.open(res.data);
+        }).catch(e=>{
+            alert('QuickBooks connection error');
+        });
+    }
+
     return (
         <Container onSubmit={e=>{
             e.preventDefault();
@@ -92,12 +102,7 @@ export default function Login() {
                    
                     onClick={e=>{
                         e.preventDefault();
-                        axios.get('/authUri').then(res=>{
-                            console.log('-----------',res.data)
-                            window.open(res.data);
-                        }).catch(e=>{
-                            alert('QuickBooks connection error');
-                        });
+                        handleQuickBookConnection();
                     }}
                 >Connect to QuickBooks</StyledButton1>
             </Fieldset>
