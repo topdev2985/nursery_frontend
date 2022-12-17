@@ -5,6 +5,7 @@ import { Link , useNavigate} from "react-router-dom";
 import styled from "styled-components";
 
 import axios from "axios";
+import serverurl from "../../actions/serverurl";
 
 import { Input, InputWrapper, Label, Fieldset } from "../../components/FormControls/FormControlStyles";
 
@@ -67,7 +68,7 @@ export default function Login() {
     }
 
     const handleQuickBookConnection=()=>{
-        axios.get('/authUri').then(res=>{
+        axios.get(`${serverurl}/authUri`).then(res=>{
             console.log('-----------',res)
             window.open(res.data);
         }).catch(e=>{
