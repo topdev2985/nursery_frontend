@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
@@ -13,17 +13,17 @@ import { TextField } from "@mui/material";
 import { InputWrapper, InputsGroup, Label, Select } from "../../components/FormControls/FormControlStyles";
 import { fetchInvoice } from "../../reducers/invoiceSlices";
 const StyledButton = styled.button`
-font-size: 20px;
-color: white;
-background-color: hsl(252deg 94% 67%);
-border: 0;
-border-radius: 4px;
-line-height: 2.55;
-font-weight: bold;
-cursor:pointer;
-&:hover{
-    background-color:hsl(252deg 100% 73%);
-}
+    font-size: 20px;
+    color: white;
+    background-color: hsl(252deg 94% 67%);
+    border: 0;
+    border-radius: 4px;
+    line-height: 2.55;
+    font-weight: bold;
+    cursor:pointer;
+    &:hover{
+        background-color:hsl(252deg 100% 73%);
+    }
 `;
 
 export default function Selector() {
